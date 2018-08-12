@@ -3,15 +3,12 @@ package pl.allegro.interview;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
 
 
 public class BaseApplication {
@@ -100,16 +97,5 @@ public class BaseApplication {
 
 
 
-    public BaseApplication enterRandomTableElement(String dataTableXpath) {
-        List<WebElement> tableRows = driver.findElements(By.xpath(dataTableXpath + "/tr"));
-        Integer rowsNumber = tableRows.size();
-        Integer randomRow = new Random().nextInt(rowsNumber);
-        tableRows.get(randomRow)
-                .findElement(By.xpath(".//td[1]"))
-                .click();
-        WebElement myDynamicElement = (new WebDriverWait(driver, 5))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Otwórz' and not(@class='ui-state-disabled')]")));
-        clickOn("//a[text()='Otwórz' and not(@class='ui-state-disabled')]");
-        return this;
-    }
+
 }
